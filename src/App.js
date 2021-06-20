@@ -1,24 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import { Typography, AppBar } from '@material-ui/core';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { blue } from '@material-ui/core/colors';
+import VideoPlayer from './components/VideoPlayer';
+import Options from './components/Options';
+import Notifications from './components/Notifications';
 
-function App() {
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#fefefe'
+    },
+    secondary: {
+      main: blue[500]
+    },
+    accent: {
+      main: '#F87171'
+    }
+  },
+  typography: {
+    fontFamily: 'Quicksand',
+    fontWeightLight: 400,
+    fontWeightRegular: 500,
+    fontWeightMedium: 600,
+    fontWeightBold: 700,
+  },
+});
+
+theme.spacing(2);
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <AppBar position='static' color='secondary'>
+        <Typography variant='h2' align='center'>Techie Video Chat</Typography>
+        <Typography variant='p' align='center' gutterBottom>created by McTechie ~</Typography>
+      </AppBar>
+      <VideoPlayer />
+      <Options>
+        <Notifications />
+      </Options>
+    </ThemeProvider>
   );
 }
 
